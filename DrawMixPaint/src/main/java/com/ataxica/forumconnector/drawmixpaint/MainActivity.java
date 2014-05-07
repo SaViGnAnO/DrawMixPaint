@@ -1,5 +1,6 @@
 package com.ataxica.forumconnector.drawmixpaint;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -13,8 +14,15 @@ import java.io.IOException;
 
 //testing
 public class MainActivity extends ActionBarActivity {
-
+    Document doc = null;
     TextView titleLabel;
+
+    class RetrievedData extends AsyncTask<String, Void, Document> {
+        protected Document doInBackground(String... docToParse) {
+            RunParse();
+            return null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +47,12 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_parse) RunParse();
+        } else if (id == R.id.action_parse) new RetrievedData().execute(doc);
         return super.onOptionsItemSelected(item);
     }
 
     private void RunParse() {
-        Document doc = null;
+
         try {
             doc = Jsoup.connect("http://forum.drawmixpaint.com").get();
         } catch (IOException e) {
