@@ -16,11 +16,23 @@ import java.io.IOException;
 public class MainActivity extends ActionBarActivity {
     Document doc = null;
     TextView titleLabel;
+    String title;
 
     class RetrievedData extends AsyncTask<String, Void, Document> {
         protected Document doInBackground(String... docToParse) {
-            RunParse();
+            try {
+                doc = Jsoup.connect("http://forum.drawmixpaint.com").get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Document document) {
+            title = doc.title();
+            titleLabel.setText(title);
+            super.onPostExecute(document);
         }
     }
 
@@ -47,19 +59,10 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_parse) new RetrievedData().execute(doc);
+        } else if (id == R.id.action_parse) {
+            new RetrievedData().execute();
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    private void RunParse() {
-
-        try {
-            doc = Jsoup.connect("http://forum.drawmixpaint.com").get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String title = doc.title();
-
-        titleLabel.setText(title);
-    }
 }
