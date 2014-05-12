@@ -3,21 +3,26 @@ package com.ataxica.forumconnector.drawmixpaint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_main;
+import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_discussions;
 
-//testing
-public class MainActivity extends ActionBarActivity {
+/**
+ * Created by Brian Savignano on 5/11/2014.
+ */
+public class RecentDiscussionsActivity extends ActionBarActivity{
     Document doc = null;
 
     class RetrievedData extends AsyncTask<String, Void, Document> {
@@ -32,6 +37,13 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Document document) {
+            Element content = doc.getElementById("DataList Discussions");
+            Elements posts = content.getElementsByClass("Item");
+
+            for (Element post : posts) {
+                Elements title = post.getElementsByClass("Title");
+                Log.d("POST",title.toString());
+            }
             super.onPostExecute(document);
         }
     }
@@ -39,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(activity_main);
+        setContentView(activity_recent_discussions);
     }
 
 
@@ -64,9 +76,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getRecentDiscussions(View v) {
-        Intent myIntent = new Intent(MainActivity.this, RecentDiscussionsActivity.class);
-        //myIntent.putExtra("key", value); //Optional parameters
-        MainActivity.this.startActivity(myIntent);
-    }
 }
