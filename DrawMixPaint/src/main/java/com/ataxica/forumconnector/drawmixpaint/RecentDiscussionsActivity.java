@@ -37,12 +37,13 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
 
         @Override
         protected void onPostExecute(Document document) {
-            Element content = doc.getElementById("DataList Discussions");
-            Elements posts = content.getElementsByClass("Item");
+            Elements discussions = doc.select(".ItemDiscussion");
 
-            for (Element post : posts) {
+            for (Element post : discussions) {
                 Elements title = post.getElementsByClass("Title");
-                Log.d("POST",title.toString());
+                Elements author = post.select(".discussionauthor");
+                String msg = "Title: "+title.text()+" By: "+author.text();
+                Log.d("POST",msg);
             }
             super.onPostExecute(document);
         }
