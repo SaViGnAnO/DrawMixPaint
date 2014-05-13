@@ -25,6 +25,7 @@ import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_d
 public class RecentDiscussionsActivity extends ActionBarActivity{
     Document doc = null;
 
+
     class RetrievedData extends AsyncTask<String, Void, Document> {
         protected Document doInBackground(String... docToParse) {
             try {
@@ -42,6 +43,7 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
             for (Element post : discussions) {
                 Elements title = post.getElementsByClass("Title");
                 Elements author = post.select(".discussionauthor");
+                Elements imageURL = post.select("");
                 String msg = "Title: "+title.text()+" By: "+author.text();
                 Log.d("POST",msg);
             }
@@ -53,6 +55,7 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_recent_discussions);
+        new RetrievedData().execute();
     }
 
 
@@ -72,7 +75,7 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_parse) {
-            new RetrievedData().execute();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
