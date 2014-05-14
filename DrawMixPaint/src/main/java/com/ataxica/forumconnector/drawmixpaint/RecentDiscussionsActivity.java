@@ -43,8 +43,8 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
             for (Element post : discussions) {
                 Elements title = post.getElementsByClass("Title");
                 Elements author = post.select(".discussionauthor");
-                Elements imageURL = post.select("");
-                String msg = "Title: "+title.text()+" By: "+author.text();
+                String imageURL = post.select("a > img").attr("src");
+                String msg = "Title: "+title.text()+" By: "+author.text()+" "+imageURL;
                 Log.d("POST",msg);
             }
             super.onPostExecute(document);
