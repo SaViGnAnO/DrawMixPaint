@@ -1,14 +1,14 @@
 package com.ataxica.forumconnector.drawmixpaint;
 
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,6 +16,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_discussions;
 
@@ -24,12 +29,42 @@ import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_d
  */
 public class RecentDiscussionsActivity extends ActionBarActivity{
     Document doc = null;
-
+    ListView listView;
+    ArrayList<DiscussionDetails> details;
+    AdapterView.AdapterContextMenuInfo info;
 
     class RetrievedData extends AsyncTask<String, Void, Document> {
         protected Document doInBackground(String... docToParse) {
             try {
                 doc = Jsoup.connect("http://forum.drawmixpaint.com/discussions").get();
+                Elements discussions = doc.select(".ItemDiscussion");
+
+
+                for (Element post : discussions) {
+                    Elements title = post.getElementsByClass("Title");
+                    Elements author = post.select(".discussionauthor");
+                    String imageURL = post.select(".ProfilePhoto").attr("src");
+                    DiscussionDetails Detail = new DiscussionDetails();
+                    if (imageURL.startsWith("//")){
+                        imageURL = "http:"+imageURL;
+                    }
+                    try {
+                        URL url = new URL(imageURL);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setDoInput(true);
+                        connection.connect();
+                        InputStream input = connection.getInputStream();
+                        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                        Detail.setImage(myBitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Detail.setAuthor(author.text());
+                    Detail.setTitle(title.text());
+                    details.add(Detail);
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -38,24 +73,21 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
 
         @Override
         protected void onPostExecute(Document document) {
-            Elements discussions = doc.select(".ItemDiscussion");
-
-            for (Element post : discussions) {
-                Elements title = post.getElementsByClass("Title");
-                Elements author = post.select(".discussionauthor");
-                String imageURL = post.select("a > img").attr("src");
-                String msg = "Title: "+title.text()+" By: "+author.text()+" "+imageURL;
-                Log.d("POST",msg);
-            }
+            listView.setAdapter(new RecentDiscussionsAdapter(details, getParent()));
             super.onPostExecute(document);
         }
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_recent_discussions);
+        listView = (ListView)findViewById(R.id.listView);
+        details = new ArrayList<DiscussionDetails>();
+
         new RetrievedData().execute();
+
     }
 
 

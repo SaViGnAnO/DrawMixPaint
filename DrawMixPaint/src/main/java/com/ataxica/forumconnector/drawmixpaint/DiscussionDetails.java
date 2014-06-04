@@ -5,15 +5,15 @@ import android.graphics.Bitmap;
 /**
  * Created by Brian Savignano on 5/13/2014.
  */
-public class DiscussionList {
-    private Bitmap image;
-    private String title;
-    private String author;
-    private String viewCount;
-    private String commentCount;
-    private String lastCommentBy;
-    private String lastCommentTime;
-    private String category;
+public class DiscussionDetails {
+    Bitmap image;
+    String title;
+    String author;
+    String viewCount;
+    String commentCount;
+    String lastCommentBy;
+    String lastCommentTime;
+    String category;
 
     public Bitmap getImage() {
         return image;
@@ -79,11 +79,11 @@ public class DiscussionList {
         this.category = category;
     }
 
-    public DiscussionList(){
+    public DiscussionDetails(){
         super();
     }
 
-    public DiscussionList(Bitmap image, String title, String author, String viewCount, String commentCount, String lastCommentBy, String lastCommentTime, String category){
+    public DiscussionDetails(Bitmap image, String title, String author, String viewCount, String commentCount, String lastCommentBy, String lastCommentTime, String category){
         super();
 
         this.image = image;
