@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="64dp"
+    android:layout_width="match_parent" android:layout_height="70dp"
     android:padding="5dp"
     android:background="#ffedf6fd">
 
@@ -21,13 +21,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Custom DMP App in progress"
         android:id="@+id/titleView"
         android:layout_alignTop="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:singleLine="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,5 +37,93 @@
         android:id="@+id/authorView"
         android:layout_below="@+id/titleView"
         android:layout_alignLeft="@+id/titleView"
-        android:layout_alignStart="@+id/titleView" />
+        android:layout_alignStart="@+id/titleView"
+        android:textStyle="italic"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Most recent by iwanttopaintrealism"
+        android:id="@+id/lastCommentByView"
+        android:layout_below="@+id/authorView"
+        android:layout_toRightOf="@+id/imageView"
+        android:textStyle="italic"
+        android:layout_toLeftOf="@+id/lastCommentTimeView"
+        android:paddingRight="3dp"
+        android:overScrollMode="never"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="April 9"
+        android:id="@+id/lastCommentTimeView"
+        android:layout_alignTop="@+id/lastCommentByView"
+        android:textStyle="italic"
+        android:layout_alignLeft="@+id/viewsView"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="2567"
+        android:id="@+id/viewsView"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_alignBottom="@+id/authorView"
+        android:textStyle="italic" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:scaleType="fitEnd"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:layout_toLeftOf="@+id/commentsView"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_alignBottom="@+id/authorView"
+        android:maxWidth="20dp"
+        android:src="@drawable/icon_eye" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="157"
+        android:id="@+id/commentsView"
+        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_alignBottom="@+id/authorView"
+        android:textStyle="italic"
+        android:layout_toLeftOf="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCommentsImage"
+        android:src="@drawable/new_comments"
+        android:scaleType="fitStart"
+        android:adjustViewBounds="false"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_alignBottom="@+id/authorView"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:src="@drawable/icon_comments"
+        android:scaleType="fitStart"
+        android:maxWidth="20dp"
+        android:adjustViewBounds="true"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_alignBottom="@+id/authorView"
+        android:layout_toLeftOf="@+id/newCommentsImage" />
+
 </RelativeLayout>

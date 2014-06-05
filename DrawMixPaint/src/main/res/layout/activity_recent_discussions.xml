@@ -2,10 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.ataxica.forumconnector.drawmixpaint.MainActivity"
     android:background="#270054f2">
 
@@ -19,11 +15,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleLabel"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="true"
+        android:text="Recent Discussions"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="top"
+        android:paddingBottom="2dp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -33,9 +33,22 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:showDividers="middle">
+        android:showDividers="middle"
+        android:id="@+id/linearLayout"
+        android:layout_alignRight="@+id/titleLabel"
+        android:layout_alignEnd="@+id/titleLabel">
+
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+        </RelativeLayout>
 
         <ListView
             android:layout_width="match_parent"
@@ -43,5 +56,6 @@
             android:id="@+id/listView"
             android:layout_gravity="center_horizontal"
             android:footerDividersEnabled="false" />
+
     </LinearLayout>
 </RelativeLayout>
