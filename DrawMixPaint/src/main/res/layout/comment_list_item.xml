@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="#ffe5eef5">
+
+    <ImageView
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="false"
+        android:padding="1dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/avatar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="dencal"
+        android:id="@+id/authorView"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="★★☆"
+        android:id="@+id/rankView"
+        android:layout_alignTop="@+id/authorView"
+        android:layout_toRightOf="@+id/authorView"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignBottom="@+id/authorView"
+        android:gravity="center_vertical"
+        android:paddingLeft="2dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="May 27"
+        android:id="@+id/dateCreatedView"
+        android:layout_below="@+id/authorView"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="edited May 28"
+        android:id="@+id/dateUpdatedView"
+        android:layout_below="@+id/authorView"
+        android:layout_toRightOf="@+id/dateCreatedView"
+        android:paddingLeft="15dp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/imageView"
+        android:background="#ffffffff">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="savignano\n\nI haven't looked at any works in detail, but Bouguereau comes to mind.\nSuggestions welcome.\n\nDenis"
+            android:id="@+id/messageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:minLines="5"
+            android:padding="2dp"
+            android:background="#FFEDF6FD" />
+    </RelativeLayout>
+
+</RelativeLayout>

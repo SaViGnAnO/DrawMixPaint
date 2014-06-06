@@ -1,5 +1,6 @@
 package com.ataxica.forumconnector.drawmixpaint;
 
+import android.app.ListActivity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -23,13 +24,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_discussions;
 import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_unread_discussions;
 
 /**
  * Created by Brian Savignano on 5/11/2014.
  */
-public class UnreadDiscussionsActivity extends ActionBarActivity{
+public class UnreadDiscussionsActivity extends ActionBarActivity {
     Document doc = null;
     ListView listView;
     RelativeLayout loadingPanel;

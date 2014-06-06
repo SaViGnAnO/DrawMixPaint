@@ -1,5 +1,7 @@
 package com.ataxica.forumconnector.drawmixpaint;
 
+import android.app.ActionBar;
+import android.app.ListActivity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -20,21 +22,22 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import android.support.*;
 
 import static com.ataxica.forumconnector.drawmixpaint.R.layout.activity_recent_discussions;
 
 /**
  * Created by Brian Savignano on 5/11/2014.
  */
-public class RecentDiscussionsActivity extends ActionBarActivity{
+public class RecentDiscussionsActivity extends ActionBarActivity {
     Document doc = null;
     ListView listView;
     RelativeLayout loadingPanel;
     ArrayList<DiscussionDetails> details;
     AdapterView.AdapterContextMenuInfo info;
-    String url;
 
     class RetrievedData extends AsyncTask<String, Void, Document> {
         @Override
@@ -45,13 +48,11 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
 
         protected Document doInBackground(String... docToParse) {
             try {
-                doc = Jsoup.connect(url).get();
+                doc = Jsoup.connect("http://forum.drawmixpaint.com/discussions").get();
                 Elements discussions = doc.select(".ItemDiscussion");
 
 
                 for (Element post : discussions) {
-                    Boolean hasNew = false;
-                    if (post.getElementsByClass(".Unread")!=null) hasNew = true;
                     Elements title = post.getElementsByClass("Title");
                     Elements author = post.select(".discussionauthor");
                     String imageURL = post.select(".ProfilePhoto").attr("src");
@@ -83,7 +84,6 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
                     Detail.setLastCommentTime(lastCommentTime);
                     Detail.setViewCount(viewCount);
                     Detail.setCommentCount(commentCount);
-                    Detail.setHasNew(hasNew);
                     details.add(Detail);
 
                 }
@@ -111,7 +111,6 @@ public class RecentDiscussionsActivity extends ActionBarActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_recent_discussions);
-        url = getIntent().getStringExtra("url");
         listView = (ListView)findViewById(R.id.listView);
         loadingPanel = (RelativeLayout)findViewById(R.id.loadingPanel);
         details = new ArrayList<DiscussionDetails>();
