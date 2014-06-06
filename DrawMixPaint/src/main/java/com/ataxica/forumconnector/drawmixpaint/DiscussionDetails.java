@@ -14,6 +14,16 @@ public class DiscussionDetails {
     String lastCommentBy;
     String lastCommentTime;
     String category;
+    Boolean hasNew=false;
+    public Boolean getHasNew() {
+        return hasNew;
+    }
+
+    public void setHasNew(Boolean hasNew) {
+        this.hasNew = hasNew;
+    }
+
+
 
     public Bitmap getImage() {
         return image;

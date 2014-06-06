@@ -2,6 +2,7 @@ package com.ataxica.forumconnector.drawmixpaint;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,11 @@ import java.util.ArrayList;
 /**
  * Created by Brian Savignano on 6/2/2014.
  */
-public class RecentDiscussionsAdapter extends ArrayAdapter<DiscussionDetails> {
+public class DiscussionsAdapter extends ArrayAdapter<DiscussionDetails> {
     private ArrayList<DiscussionDetails> _data;
     Context _c;
 
-    public RecentDiscussionsAdapter(Context context, ArrayList<DiscussionDetails> data) {
+    public DiscussionsAdapter(Context context, ArrayList<DiscussionDetails> data) {
 
         super(context, 0, data);
         _data = data;
@@ -58,6 +59,7 @@ public class RecentDiscussionsAdapter extends ArrayAdapter<DiscussionDetails> {
         TextView lastCommentTimeView = (TextView)v.findViewById(R.id.lastCommentTimeView);
         TextView viewsView = (TextView)v.findViewById(R.id.viewsView);
         TextView commentsView = (TextView)v.findViewById(R.id.commentsView);
+        ImageView newCommentsView = (ImageView)v.findViewById(R.id.newCommentsImage);
 
         DiscussionDetails discussion = _data.get(position);
         imageView.setImageBitmap(discussion.image);
@@ -67,6 +69,7 @@ public class RecentDiscussionsAdapter extends ArrayAdapter<DiscussionDetails> {
         lastCommentTimeView.setText(discussion.lastCommentTime);
         viewsView.setText(discussion.viewCount);
         commentsView.setText(discussion.commentCount);
+        if (discussion.hasNew) newCommentsView.setVisibility(View.VISIBLE);
 
         if (discussion.author == "Mark_Carder"){
             authorView.setTypeface(Typeface.DEFAULT_BOLD);

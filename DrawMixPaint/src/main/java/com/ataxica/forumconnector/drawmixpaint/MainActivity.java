@@ -75,15 +75,21 @@ public class MainActivity extends ActionBarActivity {
                     //DO something
                     break;
                 case R.id.btnRecent:
-                    Intent myIntent = new Intent(MainActivity.this, RecentDiscussionsActivity.class);
+                    Intent recentIntent = new Intent(MainActivity.this, RecentDiscussionsActivity.class);
+                    String recentUrl = "http://forum.drawmixpaint.com/discussions";
+                    recentIntent.putExtra("url",recentUrl);
                     //myIntent.putExtra("key", value); //Optional parameters
-                    MainActivity.this.startActivity(myIntent);
+                    MainActivity.this.startActivity(recentIntent);
                     break;
                 case R.id.btnSupplyList:
                     //DO something
                     break;
                 case R.id.btnUnread:
-                    //DO something
+                    Intent unreadIntent = new Intent(MainActivity.this, UnreadDiscussionsActivity.class);
+                    String unreadUrl = "http://forum.drawmixpaint.com/discussions";
+                    unreadIntent.putExtra("url",unreadUrl);
+                    //myIntent.putExtra("key", value); //Optional parameters
+                    MainActivity.this.startActivity(unreadIntent);
                     break;
                 case R.id.btnVideos:
                     //DO something
