@@ -91,8 +91,6 @@ public class CommentsListActivity extends ActionBarActivity{
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_parse) {
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }

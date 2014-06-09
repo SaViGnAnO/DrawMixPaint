@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="@string/app_name" android:name=".RecentDiscussionsActivity"/>
-        <activity android:label="@string/app_name" android:name=".UnreadDiscussionsActivity"/>
+        <activity android:label="@string/Recent_Discussions" android:name=".RecentDiscussionsActivity"/>
+        <activity android:label="@string/Unread_Discussions" android:name=".UnreadDiscussionsActivity"/>
+        <activity android:label="" android:name=".CommentsListActivity"/>
     </application>
 
 </manifest>

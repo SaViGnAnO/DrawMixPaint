@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_parse">Parse Site</string>
     <string name="avatar">User Avatar</string>
+    <string name="Recent_Discussions">Recent Discussions</string>
+    <string name="Unread_Discussions">Unread Discussions</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.ataxica.forumconnector.drawmixpaint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.opengl.Visibility;
 import android.view.LayoutInflater;
@@ -82,4 +83,12 @@ public class DiscussionsAdapter extends ArrayAdapter<DiscussionDetails> {
     public static abstract class OnClickListener implements View.OnClickListener {
         
     }
+
+//    public void loadComments(String title, String url) {
+//        Intent recentIntent = new Intent(DiscussionsAdapter.this, RecentDiscussionsActivity.class);
+//        String recentUrl = "http://forum.drawmixpaint.com/discussions";
+//        recentIntent.putExtra("url",recentUrl);
+//        //myIntent.putExtra("key", value); //Optional parameters
+//        DiscussionsAdapter.this.startActivity(recentIntent);
+//    }
 }
